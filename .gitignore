@@ -3,6 +3,7 @@
 *.o
 *.obj
 bin/
+build/
 
 # Shared objects (inc. Windows DLLs)
 *.so
