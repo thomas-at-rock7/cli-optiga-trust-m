@@ -11,10 +11,17 @@ option(WARM_RESET "This is applicable if the host platform doesn't have GPIO opt
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 add_definitions(-DENGINE_DYNAMIC_SUPPORT)
 
-# Default to a release build
-if (NOT DEFINED CMAKE_BUILD_TYPE)
+if (CMAKE_BUILD_TYPE)
+    if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
+        message(STATUS "Build type Release")
+    else()
+        message(STATUS "Build type Debug")
+        add_definitions(-DTRUSTM_ENGINE_DEBUG) # Enable TrustM debug messages
+    endif()
+else()
+    message(STATUS "Build type not defined, defaulting to a Release build")
     set(CMAKE_BUILD_TYPE Release)
-endif (NOT DEFINED CMAKE_BUILD_TYPE)
+endif()
 
 # Required libraries for linking
 find_library(LIB_PTHREAD pthread)
