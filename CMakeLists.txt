@@ -6,6 +6,7 @@ option(BUILD_FOR_ULTRA96 "BUILD_FOR_ULTRA96" OFF)
 option(COLD_RESET "This is applicable if the host platform has GPIO option for RST and VDD." OFF) # Default
 option(SOFT_RESET "This is applicable if the host platform doesn't have GPIO options for VDD and RST." OFF)
 option(WARM_RESET "This is applicable if the host platform doesn't have GPIO option for VDD." OFF)
+option(BUILD_LINUX_EXAMPLES "This option will build linux examples" OFF)
 
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
@@ -131,20 +132,22 @@ target_link_libraries(${LIB_TRUSTM_ENGINE} PUBLIC
 )
 target_include_directories (${LIB_TRUSTM_ENGINE} PUBLIC "${ENGINE_INC}")
 
-# Build all Trust M applications but don't install them
-file(GLOB_RECURSE APP_SOURCES LIST_DIRECTORIES true "${APPDIR}/*.c")
-foreach(appsrc IN ITEMS ${APP_SOURCES})
-    get_filename_component(appbin ${appsrc} NAME_WE)
-    add_executable(${appbin} ${appsrc})
-    target_link_libraries(${appbin} PUBLIC
-                            ${LIB_TRUSTM}
-                            ${LIB_PTHREAD}
-                            ${LIB_RT}
-                            ${LIB_SSL}
-                            ${LIB_CRYPTO}
-    )
-    target_include_directories (${appbin} PUBLIC "${INCDIR}")
-endforeach()
+if (BUILD_LINUX_EXAMPLES)
+    # Build all Trust M applications but don't install them
+    file(GLOB_RECURSE APP_SOURCES LIST_DIRECTORIES true "${APPDIR}/*.c")
+    foreach(appsrc IN ITEMS ${APP_SOURCES})
+        get_filename_component(appbin ${appsrc} NAME_WE)
+        add_executable(${appbin} ${appsrc})
+        target_link_libraries(${appbin} PUBLIC
+                                ${LIB_TRUSTM}
+                                ${LIB_PTHREAD}
+                                ${LIB_RT}
+                                ${LIB_SSL}
+                                ${LIB_CRYPTO}
+        )
+        target_include_directories (${appbin} PUBLIC "${INCDIR}")
+    endforeach()
+endif()
 
 
 # Installation, just install libraries
