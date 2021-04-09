@@ -230,7 +230,7 @@ static char* __decodeDataObj(uint8_t data)
 
 static char* __decodeAC(uint8_t data)
 {
-    char *ret;
+    char *ret = NULL;
     switch (data)
     {
         case 0x00:
@@ -1015,7 +1015,7 @@ optiga_lib_status_t trustm_Open(void)
 **********************************************************************/
 optiga_lib_status_t trustm_Close(void)
 {
-    optiga_lib_status_t return_status;
+    optiga_lib_status_t return_status = 0;
     uint8_t secCnt;
 
     TRUSTM_HELPER_DBGFN(">");
@@ -1146,7 +1146,7 @@ uint16_t trustmreadFrom(uint8_t *data, uint8_t *filename)
     FILE *datafile;
     uint16_t len;
     uint8_t buf[2048];
-    uint16_t ret;
+    uint16_t ret = 0;
 
     //open 
     datafile = fopen((const char *)filename,"rb");

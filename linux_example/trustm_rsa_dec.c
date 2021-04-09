@@ -71,7 +71,7 @@ int main (int argc, char **argv)
 {
     optiga_lib_status_t return_status;
 
-    optiga_key_id_t optiga_key_id;
+    optiga_key_id_t optiga_key_id = {0};
     uint8_t message[2048];     //To store the signture generated
     uint16_t messagelen = sizeof(message);
     uint8_t encyptdata[2048];

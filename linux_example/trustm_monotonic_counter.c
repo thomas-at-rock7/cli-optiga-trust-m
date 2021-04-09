@@ -78,7 +78,7 @@ int main (int argc, char **argv)
     optiga_lib_status_t return_status;
     uint32_t inValue = 0;
     uint32_t steps = 0;
-    uint16_t optiga_oid;
+    uint16_t optiga_oid = 0;
     uint8_t read_data_buffer[8];
     uint32_t bytes_to_read = sizeof(read_data_buffer);
     uint8_t mode = OPTIGA_UTIL_ERASE_AND_WRITE;

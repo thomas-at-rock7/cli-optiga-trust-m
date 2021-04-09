@@ -98,7 +98,7 @@ int main (int argc, char **argv)
                                 0x05,0x00};         // NULL
 
     uint8_t pubKey[300];
-    uint16_t i;
+    uint16_t i = 0;
 
     uint16_t pubKeyLen = sizeof(pubKey)+1000;
     uint8_t keyType=0x01;// default Auth

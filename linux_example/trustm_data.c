@@ -80,7 +80,7 @@ int main (int argc, char **argv)
     optiga_lib_status_t return_status;
     uint16_t offset =0;
     uint32_t bytes_to_read;
-    uint16_t optiga_oid;
+    uint16_t optiga_oid = 0;
     uint8_t read_data_buffer[2048];
     uint8_t mode = OPTIGA_UTIL_WRITE_ONLY;
 

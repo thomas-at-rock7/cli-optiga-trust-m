@@ -355,7 +355,7 @@ optiga_lib_status_t trustmEngine_App_Open(void)
 **********************************************************************/
 optiga_lib_status_t trustmEngine_Close(void)
 {
-    optiga_lib_status_t return_status;
+    optiga_lib_status_t return_status = 0;
 
     TRUSTM_ENGINE_DBGFN(">");
 
@@ -391,7 +391,7 @@ optiga_lib_status_t trustmEngine_Close(void)
 **********************************************************************/
 optiga_lib_status_t trustmEngine_App_Close(void)
 {
-    optiga_lib_status_t return_status;
+    optiga_lib_status_t return_status = 0;
     uint8_t secCnt;
 
     TRUSTM_HELPER_DBGFN(">");
@@ -464,11 +464,11 @@ optiga_lib_status_t trustmEngine_App_Close(void)
 
 static uint32_t parseKeyParams(const char *aArg)
 {   
-    uint32_t ret;
+    uint32_t ret = 0;
     uint32_t value;
     char in[1024];
 
-    char *token[5];
+    char *token[6];
     int   i, j;
     
     trustm_metadata_t oidMetadata;
@@ -583,8 +583,9 @@ static uint32_t parseKeyParams(const char *aArg)
         // If token is not empty or '*' then it must be a pubkeyfile.
         if ((token[1] != NULL) && (*(token[1]) != '*') && (*(token[1]) != '^'))
         {
-            strncpy(trustm_ctx.pubkeyfilename, token[1], PUBKEYFILE_SIZE);
-            
+            strncpy(trustm_ctx.pubkeyfilename, token[1], PUBKEYFILE_SIZE -1);
+            trustm_ctx.pubkeyfilename[PUBKEYFILE_SIZE -1] = '\0';
+
             fp = fopen((const char *)trustm_ctx.pubkeyfilename,"r");
             if (!fp)
             {

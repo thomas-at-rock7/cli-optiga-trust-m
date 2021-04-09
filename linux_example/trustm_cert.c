@@ -79,9 +79,9 @@ void helpmenu(void)
 
 int main (int argc, char **argv)
 {
-    optiga_lib_status_t return_status;
+    optiga_lib_status_t return_status = 0;
     uint16_t offset, bytes_to_read;
-    uint16_t optiga_oid;
+    uint16_t optiga_oid = 0;
     uint8_t read_data_buffer[2048];
     uint8_t *pCert;
     uint16_t certLen;

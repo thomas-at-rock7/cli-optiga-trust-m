@@ -127,7 +127,7 @@ int main (int argc, char **argv)
                                 0x2B,0x24,0x03,0x03,0x02,0x08,0x01,0x01,0x0d};                               
                                                                                 
     uint8_t pubKey[200];
-    uint16_t i;
+    uint16_t i = 0;
 
     uint16_t pubKeyLen = sizeof(pubKey)+1000;
     uint8_t keyType=0x01;// default Auth

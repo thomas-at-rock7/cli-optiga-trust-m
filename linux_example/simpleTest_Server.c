@@ -99,7 +99,7 @@ void serverListen(void)
 	int                     error=0;
 	int                     pid;
 	int                     listen_sock;
-	int                     sock;
+	int                     sock = -1;
 	struct sockaddr_in      sa_serv;
 	struct sockaddr_in      sa_cli;
 	size_t                  client_len;

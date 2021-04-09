@@ -80,9 +80,9 @@ void _helpmenu(void)
 
 int main (int argc, char **argv)
 {
-    optiga_lib_status_t return_status;
+    optiga_lib_status_t return_status = 0;
 
-    optiga_key_id_t optiga_key_id;
+    optiga_key_id_t optiga_key_id = 0;
     //optiga_hash_context_t hash_context;
     //hash_data_from_host_t hash_data_host;
     //uint8_t hash_context_buffer[2048];

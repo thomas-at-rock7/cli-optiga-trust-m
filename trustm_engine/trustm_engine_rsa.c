@@ -526,7 +526,7 @@ int trustmEngine_rsa_verify(int dtype,
                 const RSA *rsa)
 {
     int ret = TRUSTM_ENGINE_FAIL;
-    optiga_lib_status_t return_status;
+    optiga_lib_status_t return_status = 0;
     public_key_from_host_t public_key_details;
 
     //uint8_t public_key[512];
